@@ -1,6 +1,6 @@
 # Video Chapter Creator Tool
 
-Pablo Alfaro, 2022
+Pablo Alfaro Saracho, 2022
 
 ## Summary
 
