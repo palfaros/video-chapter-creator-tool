@@ -43,6 +43,18 @@ Run the ```video_chapter_creator_tool.py``` script with --help for usage informa
 video_chapter_creator_tool.py --help
 ```
 
+Output:
+
+```
+usage: video_chapter_creator_tool.py [-h] -v VIDEO_FILE -a AUDIO_FILE [-f FRAMERATE FRAMERATE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v VIDEO_FILE, --video-file VIDEO_FILE
+  -a AUDIO_FILE, --audio-file AUDIO_FILE
+  -f FRAMERATE FRAMERATE, --framerate FRAMERATE FRAMERATE
+```
+
 ## Authors
 
 [Pablo Alfaro Saracho](https://www.linkedin.com/in/pablo-alfaro-saracho)
