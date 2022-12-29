@@ -4,7 +4,7 @@ Pablo Alfaro, 2022
 
 ## Summary
 
-A tool to create automatically a chapter file from a video, like a TV show or a movie.
+A tool to create automatically a chapter file from a video, e.g., a TV show episode or a movie.
 
 ## Description
 
