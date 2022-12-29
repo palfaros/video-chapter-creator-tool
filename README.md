@@ -8,8 +8,6 @@ A tool to automatically create a chapter file from a video, e.g., a TV show epis
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
-
 ![Diagram](https://user-images.githubusercontent.com/116673615/210000242-ee1f6414-2222-4208-852f-5b4f721c140f.gif)
 
 ## Getting Started
@@ -31,7 +29,11 @@ git clone https://github.com/palfaros/video-chapter-creator-tool.git
 
 This tool requires a video file and its audio track separately. Video must be ```.mp4``` or ```.avi``` only.
 ```
-video_chapter_creator_tool.py -v S0xEyy.avi -a S0xEyy_Track01.ac3 
+video_chapter_creator_tool.py -v S0xEyy.avi -a S0xEyy_Track01.ac3
+```
+The tool allows to use video and audio files with different framerate. The audio track framerate is set to be the final framerate of the chapter file. To use this feature, the old framerate (video) and the new framerate (audio) must be specified. For example, if video framerate is 25 fps and audio framerate is 23.976:
+```
+video_chapter_creator_tool.py -v S0xEyy.avi -a S0xEyy_Track01.ac3 -f 25.000 23.976
 ```
 
 ## Help
