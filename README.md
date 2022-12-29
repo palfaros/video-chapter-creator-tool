@@ -20,9 +20,12 @@ An in-depth paragraph about your project and overview of use.
 
 ### Installing
 
+
+
 ```
-git clone https://github.com/jeffgreenca/laughr.git
+git clone https://github.com/palfaros/video-chapter-creator-tool.git
 ```
+
 ### Executing program
 
 * How to run the program
