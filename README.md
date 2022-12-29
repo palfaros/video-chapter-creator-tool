@@ -33,9 +33,10 @@ code blocks for commands
 
 ## Help
 
-Any advise for common problems or issues.
+Run the '''laughr.py''' script with --help for usage information.
+
 ```
-command to run if program contains helper info
+pipenv run python laughr.py --help
 ```
 
 ## Authors
