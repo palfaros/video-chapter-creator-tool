@@ -15,8 +15,8 @@ An in-depth paragraph about your project and overview of use.
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* [ffmepg](https://github.com/FFmpeg/FFmpeg)
+* Windows 10, Linux
 
 ### Installing
 
@@ -33,7 +33,7 @@ code blocks for commands
 
 ## Help
 
-Run the ```laughr.py``` script with --help for usage information.
+Run the ```video_chapter_creator_tool.py``` script with --help for usage information.
 
 ```
 video_chapter_creator_tool.py --help
