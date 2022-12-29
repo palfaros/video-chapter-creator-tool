@@ -29,10 +29,9 @@ git clone https://github.com/palfaros/video-chapter-creator-tool.git
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+This tool requires a video file and its audio track separately. Video must be ```.mp4``` or ```.avi``` only.
 ```
-code blocks for commands
+video_chapter_creator_tool.py -v S0xEyy.avi -a S0xEyy_Track01.ac3 
 ```
 
 ## Help
