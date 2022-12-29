@@ -33,15 +33,15 @@ code blocks for commands
 
 ## Help
 
-Run the '''laughr.py''' script with --help for usage information.
+Run the ```laughr.py``` script with --help for usage information.
 
 ```
-pipenv run python laughr.py --help
+video_chapter_creator_tool.py --help
 ```
 
 ## Authors
 
-[Pablo Alfaro Saracho]([https://twitter.com/dompizzie](https://www.linkedin.com/in/pablo-alfaro-saracho))
+[Pablo Alfaro Saracho](https://www.linkedin.com/in/pablo-alfaro-saracho)
 
 ## Version History
 
