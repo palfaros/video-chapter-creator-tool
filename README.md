@@ -1,2 +1,1 @@
-# video-chapter-creator-tool
-Video Chapter Creator Tool
+# Video Chapter Creator Tool
