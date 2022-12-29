@@ -40,8 +40,7 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
-[Pablo Alfaro Saracho](https://twitter.com/dompizzie)
+[Pablo Alfaro Saracho]([https://twitter.com/dompizzie](https://www.linkedin.com/in/pablo-alfaro-saracho))
 
 ## Version History
 
