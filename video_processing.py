@@ -25,10 +25,12 @@ def get_black_frames_from_video(video_file):
     black_frames = []
     is_black_frame = []
     
+    black_frame_threshold = 3
+    
     count = 0
     success = True
     while success:
-      if np.average(image)<1:
+      if np.average(image)<black_frame_threshold:
           is_black_frame.append(1)
           black_frames.append(count)
       else:
@@ -46,6 +48,8 @@ def silence_finder_from_black_frames(is_black_frame):
     indexes_consecutive_black_frames = []
     mean_indexes_black_frames = []
     
+    min_consecutives_black_frames = 2
+    
     # First iteration
     if(is_black_frame[0]==1):
         consecutive_black_frames_counter = consecutive_black_frames_counter + 1
@@ -55,7 +59,7 @@ def silence_finder_from_black_frames(is_black_frame):
         if (is_black_frame[i]==1) and (is_black_frame[i-1]==1):
             consecutive_black_frames_counter = consecutive_black_frames_counter + 1
         else:
-            if (consecutive_black_frames_counter >= 2):
+            if (consecutive_black_frames_counter >= min_consecutives_black_frames):
                 indexes = (i-consecutive_black_frames_counter,i)
                 indexes_consecutive_black_frames.append(indexes)
                 mean_indexes_black_frames.append(mean(indexes))
@@ -65,7 +69,7 @@ def silence_finder_from_black_frames(is_black_frame):
     # Final iteration
     if (is_black_frame[-1]==1) and (is_black_frame[-2]==1):
         consecutive_black_frames_counter = consecutive_black_frames_counter + 1
-        if (consecutive_black_frames_counter >= 2):
+        if (consecutive_black_frames_counter >= min_consecutives_black_frames):
             indexes = (i-consecutive_black_frames_counter,i)
             indexes_consecutive_black_frames.append(indexes)
             mean_indexes_black_frames.append(mean(indexes))
