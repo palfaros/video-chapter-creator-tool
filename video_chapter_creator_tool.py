@@ -89,10 +89,11 @@ print()
 #%% AUDIO PROCESSING
 print(header("AUDIO PROCESSING"))
 
-if len(fps)==2:
-    indexes_consecutive_black_frames_seconds = (np.array(indexes_consecutive_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
-    mean_indexes_black_frames_seconds = (np.array(mean_indexes_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
-    print(header("FPS conversion applied",align='l'))
+if fps is not None:
+    if len(fps)==2:
+        indexes_consecutive_black_frames_seconds = (np.array(indexes_consecutive_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
+        mean_indexes_black_frames_seconds = (np.array(mean_indexes_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
+        print(header("FPS conversion applied",align='l'))
     
 count=0
 for i,j in zip(indexes_consecutive_black_frames_seconds,mean_indexes_black_frames_seconds):
@@ -106,7 +107,7 @@ temp_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)),'temp')
 os.makedirs(temp_folder,mode=0o777,exist_ok=True)
 audio_file_wav = generate_wav(audio_file,temp_folder,mono=True)
 
-tolerance = 0
+tolerance = 0.0001
 
 x, Fs = sf.read(audio_file_wav)
 x = x/x.max()
@@ -144,6 +145,8 @@ os.makedirs(output_folder,mode=0o777,exist_ok=True)
 chapter_file_xml = '.'.join([os.path.splitext(video_file)[0],"xml"])
 output_file = os.path.join(output_folder,os.path.basename(chapter_file_xml))
 
+silences_mean = np.delete(silences_mean,-3)
+
 chapters = []
 for i in silences_mean:
     chapters.append(i/Fs)
@@ -163,3 +166,7 @@ for i in chapters:
     print('Chapter',count,'starts at',convert_seconds_to_hh_mm_ss(i))
 
 print()
+
+sys.stdout.close()
+sys.stdout = orig_stdout
+del orig_stdout
