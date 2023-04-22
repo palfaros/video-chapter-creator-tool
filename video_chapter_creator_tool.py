@@ -71,7 +71,6 @@ print(header("VIDEO PROCESSING"))
 
 video_frame_rate = get_video_frame_rate(video_file)
 print('Video Frame Rate (FPS):',video_frame_rate)
-print()
 
 black_frames,is_black_frame = get_black_frames_from_video(video_file)
 indexes_consecutive_black_frames,mean_indexes_black_frames = silence_finder_from_black_frames(is_black_frame)
@@ -89,10 +88,11 @@ print()
 #%% AUDIO PROCESSING
 print(header("AUDIO PROCESSING"))
 
-if len(fps)==2:
-    indexes_consecutive_black_frames_seconds = (np.array(indexes_consecutive_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
-    mean_indexes_black_frames_seconds = (np.array(mean_indexes_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
-    print(header("FPS conversion applied",align='l'))
+if fps is not None:
+    if len(fps)==2:
+        indexes_consecutive_black_frames_seconds = (np.array(indexes_consecutive_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
+        mean_indexes_black_frames_seconds = (np.array(mean_indexes_black_frames)/video_frame_rate*(float(fps[0])/float(fps[1])))
+        print(header("FPS conversion applied",align='l'))
     
 count=0
 for i,j in zip(indexes_consecutive_black_frames_seconds,mean_indexes_black_frames_seconds):
@@ -106,7 +106,8 @@ temp_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)),'temp')
 os.makedirs(temp_folder,mode=0o777,exist_ok=True)
 audio_file_wav = generate_wav(audio_file,temp_folder,mono=True)
 
-tolerance = 0
+tolerance = 0.0001
+print("Tolerance:", tolerance)
 
 x, Fs = sf.read(audio_file_wav)
 x = x/x.max()
@@ -124,7 +125,7 @@ for i,j in zip(indexes_consecutive_black_frames_seconds,mean_indexes_black_frame
         silences_mean.append(first_sample)  
     else:
         result = np.where(abs(x[first_sample:last_sample+1]) <= tolerance)
-        if len(result) > 0:
+        if result[0].size > 0:
             silences_indexes.append((first_sample+result[0][0],first_sample+result[0][-1]))
             silences_mean.append(first_sample+result[0][-1])
    
@@ -163,3 +164,7 @@ for i in chapters:
     print('Chapter',count,'starts at',convert_seconds_to_hh_mm_ss(i))
 
 print()
+
+sys.stdout.close()
+sys.stdout = orig_stdout
+del orig_stdout
