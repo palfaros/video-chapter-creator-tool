@@ -25,12 +25,14 @@ def get_black_frames_from_video(video_file):
     black_frames = []
     is_black_frame = []
     
-    black_frame_threshold = 3
+    black_frame_threshold = 10
+    print("Black frame threshold:", black_frame_threshold)
     
     count = 0
     success = True
     while success:
-      if np.average(image)<black_frame_threshold:
+      gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+      if np.average(gray)<black_frame_threshold:
           is_black_frame.append(1)
           black_frames.append(count)
       else:
@@ -48,7 +50,8 @@ def silence_finder_from_black_frames(is_black_frame):
     indexes_consecutive_black_frames = []
     mean_indexes_black_frames = []
     
-    min_consecutives_black_frames = 2
+    min_consecutives_black_frames = 10
+    print("Minimum consecutive black frames to consider silence:", min_consecutives_black_frames)
     
     # First iteration
     if(is_black_frame[0]==1):
